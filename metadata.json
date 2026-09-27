@@ -1,0 +1,6 @@
+{
+  "name": "Travel AI Command Center",
+  "description": "Master production-hardened AI tourism operating system featuring multi-source Business Brain, multilingual sales agent, reservation engine, WhatsApp dispatch, social automation, and audit suite.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
