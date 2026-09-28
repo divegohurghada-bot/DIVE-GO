@@ -28,21 +28,24 @@ export const WebsiteExcursions: React.FC<WebsiteExcursionsProps> = ({
   const getImageForService = (service: ServiceItem) => {
     const titleLower = service.title.toLowerCase();
     if (titleLower.includes('speedboat') || titleLower.includes('orange bay')) {
-      return '/src/assets/images/imported/speedboat_orange_bay.jpg';
+      return '/src/assets/images/orange_bay_speedboat_1790601426295.jpg';
     }
     if (service.category === 'desert_safari' || titleLower.includes('safari') || titleLower.includes('quad')) {
-      return '/src/assets/images/imported/quad_desert_safari.jpg';
+      return '/src/assets/images/desert_quad_sunset_1790601472549.jpg';
     }
-    if (titleLower.includes('intro') || titleLower.includes('daily')) {
-      return '/src/assets/images/imported/daily_diving_intro.jpg';
+    if (titleLower.includes('padi') || titleLower.includes('privat')) {
+      return '/src/assets/images/padi_private_instructor_1790601441110.jpg';
     }
-    if (titleLower.includes('dolphin') || service.category === 'sea_trip') {
-      return '/src/assets/images/dolphin_house_snorkeling_1790535775267.jpg';
+    if (titleLower.includes('tauchsafari') || titleLower.includes('wrack') || titleLower.includes('wreck')) {
+      return '/src/assets/images/red_sea_wreck_safari_1790601457939.jpg';
     }
-    if (service.category === 'diving') {
-      return '/src/assets/images/daily_scuba_diving_1790535763765.jpg';
+    if (titleLower.includes('dolphin') || titleLower.includes('delfin')) {
+      return '/src/assets/images/wild_dolphins_snorkeling_1790601486695.jpg';
     }
-    return '/src/assets/images/hero_red_sea_diving_1790535752456.jpg';
+    if (titleLower.includes('daily') || titleLower.includes('intro') || service.category === 'diving') {
+      return '/src/assets/images/daily_scuba_coral_dive_1790601412136.jpg';
+    }
+    return '/src/assets/images/daily_scuba_coral_dive_1790601412136.jpg';
   };
 
   const filteredServices = state.services.filter((s) => {

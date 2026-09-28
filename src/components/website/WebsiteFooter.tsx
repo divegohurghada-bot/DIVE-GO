@@ -20,16 +20,21 @@ export const WebsiteFooter: React.FC<WebsiteFooterProps> = ({ state }) => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
           {/* Col 1: Brand & Social Follow */}
           <div className="space-y-4 md:col-span-1">
-            <div className="flex items-center space-x-3">
-              <div className="h-10 w-10 rounded-xl bg-slate-900 border border-slate-700/80 p-1 flex items-center justify-center shadow-lg shadow-cyan-500/20 overflow-hidden shrink-0">
-                <img
-                  src="/src/assets/divego_logo.png"
-                  alt="DiveGo Hurghada Logo"
-                  className="h-full w-full object-contain"
-                />
+            <div className="flex items-center space-x-3.5 group cursor-pointer">
+              <div className="logo-animated-container">
+                <div className="logo-halo pointer-events-none" />
+                <div className="relative h-11 w-11 rounded-2xl bg-slate-950 border border-slate-700/80 p-1 flex items-center justify-center shadow-lg shadow-cyan-500/20 group-hover:border-cyan-400 group-hover:shadow-cyan-400/50 transition-all duration-300 overflow-hidden shrink-0 z-10">
+                  <img
+                    src="/src/assets/divego_logo.png"
+                    alt="DiveGo Hurghada Logo"
+                    className="h-full w-full object-contain logo-img-pulse"
+                  />
+                </div>
               </div>
               <div>
-                <span className="font-extrabold text-base text-white block">DiveGo Hurghada</span>
+                <span className="font-extrabold text-base text-white block group-hover:text-cyan-300 transition-colors">
+                  DiveGo Hurghada
+                </span>
                 <span className="text-[10px] text-cyan-400 font-medium">{t.footer.tagline}</span>
               </div>
             </div>

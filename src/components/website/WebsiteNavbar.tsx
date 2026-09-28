@@ -6,7 +6,6 @@ import {
   Calendar,
   Menu,
   X,
-  HardDrive,
 } from 'lucide-react';
 import { AppState } from '../../services/store';
 import { SocialMediaBar } from '../common/SocialMediaBar';
@@ -65,16 +64,6 @@ export const WebsiteNavbar: React.FC<WebsiteNavbarProps> = ({
                 <SocialMediaBar iconSize="sm" />
               </div>
 
-              {/* Google Drive Header Sync Trigger */}
-              <button
-                onClick={() => setDriveModalOpen(true)}
-                className="flex items-center space-x-1.5 px-2.5 py-1 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-cyan-300 border border-slate-700 transition cursor-pointer text-[10px] font-semibold"
-                title={t.nav.googleDrive}
-              >
-                <HardDrive className="h-3 w-3 text-cyan-400" />
-                <span>{t.nav.googleDrive}</span>
-              </button>
-
               {/* 20-Language Selector */}
               <LanguageSelector variant="compact" />
             </div>
@@ -83,20 +72,27 @@ export const WebsiteNavbar: React.FC<WebsiteNavbarProps> = ({
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
-            {/* Zone 1: Single text element wordmark */}
-            <a href="#" className="flex items-center space-x-3 group">
-              <div className="h-11 w-11 rounded-2xl bg-slate-900 border border-slate-700/80 p-1 flex items-center justify-center shadow-lg shadow-cyan-500/20 group-hover:scale-105 transition overflow-hidden shrink-0">
-                <img
-                  src="/src/assets/divego_logo.png"
-                  alt="DiveGo Hurghada Logo"
-                  className="h-full w-full object-contain"
-                />
+            {/* Zone 1: Animated Interactive Logo & Wordmark */}
+            <a href="#" className="flex items-center space-x-3.5 group cursor-pointer" aria-label="DiveGo Hurghada Home">
+              <div className="logo-animated-container">
+                {/* Rotating dynamic rainbow neon halo glow */}
+                <div className="logo-halo pointer-events-none" />
+
+                {/* Logo Frame */}
+                <div className="relative h-12 w-12 rounded-2xl bg-slate-950 border border-slate-700/80 p-1 flex items-center justify-center shadow-xl shadow-cyan-500/20 group-hover:border-cyan-400 group-hover:shadow-cyan-400/50 transition-all duration-300 overflow-hidden shrink-0 z-10">
+                  <img
+                    src="/src/assets/divego_logo.png"
+                    alt="DiveGo Hurghada Logo"
+                    className="h-full w-full object-contain logo-img-pulse"
+                  />
+                </div>
               </div>
+
               <div>
-                <span className="font-black text-xl tracking-tight bg-gradient-to-r from-white via-cyan-100 to-cyan-400 bg-clip-text text-transparent block">
+                <span className="font-black text-xl tracking-tight bg-gradient-to-r from-white via-cyan-100 to-cyan-400 group-hover:from-cyan-300 group-hover:via-teal-200 group-hover:to-cyan-400 bg-clip-text text-transparent block transition-all duration-300">
                   DiveGo Hurghada
                 </span>
-                <span className="text-[11px] text-cyan-400 font-medium block">
+                <span className="text-[11px] text-cyan-400/90 group-hover:text-cyan-300 font-medium block transition-colors duration-200">
                   {t.footer.tagline}
                 </span>
               </div>
@@ -213,17 +209,6 @@ export const WebsiteNavbar: React.FC<WebsiteNavbarProps> = ({
             </a>
 
             <div className="pt-3 border-t border-slate-800 flex flex-col space-y-3">
-              <button
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  setDriveModalOpen(true);
-                }}
-                className="w-full py-2 bg-slate-800 hover:bg-slate-700 text-cyan-400 rounded-xl font-bold flex items-center justify-center space-x-2 text-xs"
-              >
-                <HardDrive className="h-4 w-4" />
-                <span>{t.nav.googleDrive}</span>
-              </button>
-
               <button
                 onClick={() => {
                   setMobileMenuOpen(false);
