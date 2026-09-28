@@ -35,8 +35,17 @@ import { SecurityAndAuditView } from './components/SecurityAndAuditView';
 import { AuditTestingSuiteView } from './components/AuditTestingSuiteView';
 import { AuditReportModal } from './components/AuditReportModal';
 import { WebsiteHome } from './components/website/WebsiteHome';
+import { LanguageProvider } from './context/LanguageContext';
 
 export default function App() {
+  return (
+    <LanguageProvider>
+      <AppContent />
+    </LanguageProvider>
+  );
+}
+
+function AppContent() {
   const [state, setState] = useState<AppState>(appStore.getState());
   // Mode: "website" (Public Website) vs "command_center" (Operations & Auditor Hub)
   const [viewMode, setViewMode] = useState<'website' | 'command_center'>('website');

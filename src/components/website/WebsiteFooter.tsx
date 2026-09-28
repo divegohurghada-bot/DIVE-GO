@@ -2,6 +2,7 @@ import React from 'react';
 import { Compass, Phone, Mail, MapPin } from 'lucide-react';
 import { AppState } from '../../services/store';
 import { SocialMediaBar } from '../common/SocialMediaBar';
+import { useLanguage } from '../../context/LanguageContext';
 
 interface WebsiteFooterProps {
   state: AppState;
@@ -9,6 +10,7 @@ interface WebsiteFooterProps {
 }
 
 export const WebsiteFooter: React.FC<WebsiteFooterProps> = ({ state }) => {
+  const { t } = useLanguage();
   const phone = state.profile.whatsappNumber || '+2 0103 94 64 284';
   const cleanPhone = phone.replace(/[^0-9]/g, '');
 
@@ -28,20 +30,20 @@ export const WebsiteFooter: React.FC<WebsiteFooterProps> = ({ state }) => {
               </div>
               <div>
                 <span className="font-extrabold text-base text-white block">DiveGo Hurghada</span>
-                <span className="text-[10px] text-cyan-400 font-medium">Ihr Partner für privaten Tauchunterricht</span>
+                <span className="text-[10px] text-cyan-400 font-medium">{t.footer.tagline}</span>
               </div>
             </div>
             <p className="text-slate-400 text-[11px] leading-relaxed">
-              Professionelle Tauchschule für individuellen Unterricht, Daily Diving, Tauchsafaris, Speedboat-Touren zur Orange Bay und Quad-Safaris in Hurghada, Rotes Meer.
+              {t.footer.desc}
             </p>
             <div className="text-[11px] text-cyan-400 font-medium">
-              15+ Jahre Erfahrung · 1000+ Zufriedene Taucher · 5 Sprachen 🇩🇪 🇬🇧 🇪🇬 🇷🇺 🇹🇷
+              15+ Jahre Erfahrung · 1000+ Zufriedene Taucher · 20 Sprachen 🌍
             </div>
 
             {/* Social Media Links with Icons */}
             <div className="pt-2">
               <span className="text-[11px] font-bold text-white uppercase tracking-wider block mb-2">
-                Connect With Us
+                {t.footer.connectWithUs}
               </span>
               <SocialMediaBar iconSize="sm" />
             </div>

@@ -8,12 +8,9 @@ import {
   ShieldCheck,
   CheckCircle2,
   Sparkles,
-  Phone,
-  Waves,
-  Anchor,
-  Flame,
 } from 'lucide-react';
 import { AppState } from '../../services/store';
+import { useLanguage } from '../../context/LanguageContext';
 
 interface WebsiteHeroProps {
   state: AppState;
@@ -21,7 +18,8 @@ interface WebsiteHeroProps {
   onOpenAiChat: () => void;
 }
 
-export const WebsiteHero: React.FC<WebsiteHeroProps> = ({ state, onOpenBooking, onOpenAiChat }) => {
+export const WebsiteHero: React.FC<WebsiteHeroProps> = ({ state, onOpenBooking }) => {
+  const { t } = useLanguage();
   const tomorrow = new Date(Date.now() + 86400000).toISOString().split('T')[0];
   const [selectedServiceId, setSelectedServiceId] = useState(state.services[0]?.id || '');
   const [selectedDate, setSelectedDate] = useState(tomorrow);
@@ -74,23 +72,22 @@ export const WebsiteHero: React.FC<WebsiteHeroProps> = ({ state, onOpenBooking, 
             <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500" />
           </span>
           <span className="font-mono text-emerald-400 font-bold uppercase tracking-wider text-[11px]">
-            Live Departures Active
+            {t.hero.liveBadge}
           </span>
           <span className="text-slate-600">·</span>
-          <span>Red Sea 28°C · Visibility 30m+</span>
+          <span>{t.hero.tempVis}</span>
         </div>
 
         {/* Main Display Headline with Radiant Shimmer */}
         <h1 className="text-4xl sm:text-5xl lg:text-7xl font-black tracking-tight max-w-4xl mx-auto leading-tight sm:leading-none text-balance mb-6">
-          Experience the Magic of the{' '}
+          {t.hero.titlePrefix}{' '}
           <span className="bg-gradient-to-r from-cyan-300 via-teal-200 to-blue-400 bg-clip-text text-transparent hover:from-cyan-200 hover:to-blue-300 transition-colors duration-500">
-            Red Sea Underwater
+            {t.hero.titleHighlight}
           </span>
         </h1>
 
         <p className="text-base sm:text-lg text-slate-200 max-w-2xl mx-auto leading-relaxed mb-10 text-balance">
-          Daily boat diving to top reefs, Discover Scuba for beginners, wild dolphin snorkeling at Shaab El Erg, and
-          Sahara desert quad safaris. Hotel transfers and chef-prepared lunch buffet included.
+          {t.hero.desc}
         </p>
 
         {/* Trip Finder & Quick Booking Bar */}
@@ -101,8 +98,8 @@ export const WebsiteHero: React.FC<WebsiteHeroProps> = ({ state, onOpenBooking, 
           {/* Service Picker */}
           <div>
             <label className="block text-slate-300 font-semibold mb-1 flex items-center space-x-1">
-              <Compass className="h-3.5 w-3.5 text-cyan-400 animate-spin-slow" />
-              <span>Select Excursion</span>
+              <Compass className="h-3.5 w-3.5 text-cyan-400" />
+              <span>{t.hero.selectExcursion}</span>
             </label>
             <select
               value={selectedServiceId}
@@ -121,7 +118,7 @@ export const WebsiteHero: React.FC<WebsiteHeroProps> = ({ state, onOpenBooking, 
           <div>
             <label className="block text-slate-300 font-semibold mb-1 flex items-center space-x-1">
               <Calendar className="h-3.5 w-3.5 text-cyan-400" />
-              <span>Excursion Date</span>
+              <span>{t.hero.excursionDate}</span>
             </label>
             <input
               type="date"
@@ -136,18 +133,18 @@ export const WebsiteHero: React.FC<WebsiteHeroProps> = ({ state, onOpenBooking, 
           <div>
             <label className="block text-slate-300 font-semibold mb-1 flex items-center space-x-1">
               <Users className="h-3.5 w-3.5 text-cyan-400" />
-              <span>Guests (Pax)</span>
+              <span>{t.hero.guests}</span>
             </label>
             <select
               value={selectedPax}
               onChange={(e) => setSelectedPax(Number(e.target.value))}
               className="w-full bg-slate-800 border border-slate-700 hover:border-slate-600 rounded-xl px-3 py-2.5 text-white font-medium focus:outline-none focus:border-cyan-500 transition cursor-pointer"
             >
-              <option value={1}>1 Guest</option>
-              <option value={2}>2 Guests</option>
-              <option value={3}>3 Guests</option>
-              <option value={4}>4 Guests</option>
-              <option value={5}>5+ Group Booking</option>
+              <option value={1}>1 Pax</option>
+              <option value={2}>2 Pax</option>
+              <option value={3}>3 Pax</option>
+              <option value={4}>4 Pax</option>
+              <option value={5}>5+ Group</option>
             </select>
           </div>
 
@@ -157,7 +154,7 @@ export const WebsiteHero: React.FC<WebsiteHeroProps> = ({ state, onOpenBooking, 
               type="submit"
               className="w-full py-2.5 px-4 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white rounded-xl font-bold shadow-lg shadow-cyan-600/30 hover:shadow-cyan-500/50 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center space-x-2 cursor-pointer text-xs h-[42px] group"
             >
-              <span>Check Rates & Book</span>
+              <span>{t.hero.checkRatesBtn}</span>
               <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
             </button>
           </div>
@@ -167,22 +164,22 @@ export const WebsiteHero: React.FC<WebsiteHeroProps> = ({ state, onOpenBooking, 
         <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto text-xs text-slate-300 font-medium">
           <div className="flex items-center justify-center space-x-2 bg-slate-900/70 hover:bg-slate-900 backdrop-blur-md p-3.5 rounded-2xl border border-slate-800 hover:border-emerald-500/40 hover:-translate-y-1 transition-all duration-300 shadow-lg cursor-default group">
             <CheckCircle2 className="h-4 w-4 text-emerald-400 group-hover:scale-110 transition-transform shrink-0" />
-            <span className="group-hover:text-white transition-colors">14+ Years in Hurghada</span>
+            <span className="group-hover:text-white transition-colors">{t.hero.yearsExp}</span>
           </div>
 
           <div className="flex items-center justify-center space-x-2 bg-slate-900/70 hover:bg-slate-900 backdrop-blur-md p-3.5 rounded-2xl border border-slate-800 hover:border-cyan-500/40 hover:-translate-y-1 transition-all duration-300 shadow-lg cursor-default group">
             <ShieldCheck className="h-4 w-4 text-cyan-400 group-hover:scale-110 transition-transform shrink-0" />
-            <span className="group-hover:text-white transition-colors">PADI 5-Star Safety</span>
+            <span className="group-hover:text-white transition-colors">{t.hero.padiSafety}</span>
           </div>
 
           <div className="flex items-center justify-center space-x-2 bg-slate-900/70 hover:bg-slate-900 backdrop-blur-md p-3.5 rounded-2xl border border-slate-800 hover:border-emerald-500/40 hover:-translate-y-1 transition-all duration-300 shadow-lg cursor-default group">
             <CheckCircle2 className="h-4 w-4 text-emerald-400 group-hover:scale-110 transition-transform shrink-0" />
-            <span className="group-hover:text-white transition-colors">24h Free Cancellation</span>
+            <span className="group-hover:text-white transition-colors">{t.hero.freeCancel}</span>
           </div>
 
           <div className="flex items-center justify-center space-x-2 bg-slate-900/70 hover:bg-slate-900 backdrop-blur-md p-3.5 rounded-2xl border border-slate-800 hover:border-blue-500/40 hover:-translate-y-1 transition-all duration-300 shadow-lg cursor-default group">
             <MapPin className="h-4 w-4 text-cyan-400 group-hover:scale-110 transition-transform shrink-0" />
-            <span className="group-hover:text-white transition-colors">Hotel Transfer Included</span>
+            <span className="group-hover:text-white transition-colors">{t.hero.hotelTransfer}</span>
           </div>
         </div>
       </div>

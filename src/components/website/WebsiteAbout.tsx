@@ -1,23 +1,23 @@
 import React from 'react';
 import {
   ShieldCheck,
-  Award,
   HeartHandshake,
   Anchor,
-  CheckCircle2,
   Users,
   Sparkles,
   MapPin,
-  Waves,
 } from 'lucide-react';
 import { SocialMediaBar } from '../common/SocialMediaBar';
+import { useLanguage } from '../../context/LanguageContext';
 
 export const WebsiteAbout: React.FC = () => {
+  const { t } = useLanguage();
+
   const stats = [
-    { label: 'Years of Excellence', value: '14+' },
-    { label: 'Logged Red Sea Dives', value: '25,000+' },
-    { label: 'Safety Track Record', value: '100%' },
-    { label: 'Average Guest Score', value: '4.9 ★' },
+    { label: t.about.statsYears, value: '15+' },
+    { label: t.about.statsDives, value: '25,000+' },
+    { label: t.about.statsSafety, value: '100%' },
+    { label: t.about.statsRating, value: '4.9 ★' },
   ];
 
   return (
@@ -32,23 +32,19 @@ export const WebsiteAbout: React.FC = () => {
             <div>
               <div className="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-cyan-950/80 border border-cyan-800/80 text-cyan-300 text-xs font-semibold mb-3">
                 <Sparkles className="h-3.5 w-3.5 text-cyan-400" />
-                <span>14 Years of Red Sea Excellence</span>
+                <span>{t.about.kicker}</span>
               </div>
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight text-balance">
-                About Dive Go Hurghada
+                {t.about.title}
               </h2>
             </div>
 
             <p className="text-sm text-slate-300 leading-relaxed">
-              Founded by passionate PADI Master Scuba Divers, Dive Go Hurghada was established with a singular mission:
-              to offer small-group, personalized Red Sea diving and marine excursions with uncompromising safety
-              standards and fair, transparent pricing.
+              {t.about.p1}
             </p>
 
             <p className="text-sm text-slate-300 leading-relaxed">
-              Whether you are taking your very first breath underwater with an introductory Discover Scuba dive or
-              navigating historic World War II shipwrecks at Abu Nuhas, our multilingual team of certified guides ensures
-              every moment is safe, educational, and unforgettable.
+              {t.about.p2}
             </p>
 
             {/* Quick Metrics Counter Row */}
@@ -76,9 +72,9 @@ export const WebsiteAbout: React.FC = () => {
                 </div>
                 <div className="text-xs">
                   <h4 className="font-bold text-white mb-0.5 group-hover:text-cyan-300 transition-colors">
-                    PADI 5-Star Safety
+                    {t.about.pillar1Title}
                   </h4>
-                  <p className="text-slate-400">100% emergency O2 and medical first aid on all vessels.</p>
+                  <p className="text-slate-400">{t.about.pillar1Desc}</p>
                 </div>
               </div>
 
@@ -88,9 +84,9 @@ export const WebsiteAbout: React.FC = () => {
                 </div>
                 <div className="text-xs">
                   <h4 className="font-bold text-white mb-0.5 group-hover:text-emerald-300 transition-colors">
-                    Eco-Friendly Diving
+                    {t.about.pillar2Title}
                   </h4>
-                  <p className="text-slate-400">HEPCA marine protector guidelines strictly enforced.</p>
+                  <p className="text-slate-400">{t.about.pillar2Desc}</p>
                 </div>
               </div>
 
@@ -100,9 +96,9 @@ export const WebsiteAbout: React.FC = () => {
                 </div>
                 <div className="text-xs">
                   <h4 className="font-bold text-white mb-0.5 group-hover:text-blue-300 transition-colors">
-                    Small Group Sizes
+                    {t.about.pillar3Title}
                   </h4>
-                  <p className="text-slate-400">Max 5 divers per divemaster for personalized guidance.</p>
+                  <p className="text-slate-400">{t.about.pillar3Desc}</p>
                 </div>
               </div>
 
@@ -112,25 +108,25 @@ export const WebsiteAbout: React.FC = () => {
                 </div>
                 <div className="text-xs">
                   <h4 className="font-bold text-white mb-0.5 group-hover:text-amber-300 transition-colors">
-                    Saqala Square Base
+                    {t.about.pillar4Title}
                   </h4>
-                  <p className="text-slate-400">Centrally located at Saqala Square, Hurghada First (84511).</p>
+                  <p className="text-slate-400">{t.about.pillar4Desc}</p>
                 </div>
               </div>
             </div>
 
             <div className="pt-2 flex flex-col sm:flex-row sm:items-center space-y-2 sm:space-y-0 sm:space-x-4 text-xs">
-              <span className="text-slate-400 text-[11px] font-semibold">Join our social community:</span>
+              <span className="text-slate-400 text-[11px] font-semibold">{t.about.community}</span>
               <SocialMediaBar iconSize="sm" />
             </div>
           </div>
 
-          {/* Right Image / Showcase with Dynamic Sheen and Floating Overlay */}
+          {/* Right Image / Showcase */}
           <div className="relative">
             <div className="rounded-3xl overflow-hidden shadow-2xl border border-slate-800 relative aspect-4/3 bg-slate-800 card-sheen group">
               <img
-                src="/src/assets/images/daily_scuba_diving_1790535763765.jpg"
-                alt="Certified divers exploring coral wall in Red Sea"
+                src="/src/assets/images/imported/contact_team.jpg"
+                alt="DiveGo Hurghada Base & Team"
                 className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out"
                 referrerPolicy="no-referrer"
               />
@@ -139,7 +135,7 @@ export const WebsiteAbout: React.FC = () => {
               <div className="absolute bottom-6 left-6 right-6 p-5 rounded-2xl bg-slate-900/90 backdrop-blur-md border border-slate-700/80 text-xs text-slate-200 shadow-xl group-hover:border-cyan-500/50 transition-colors">
                 <div className="flex items-center space-x-2 text-cyan-400 font-bold text-sm mb-1.5">
                   <MapPin className="h-4 w-4" />
-                  <span>Dive Go Hurghada Fleet & Center</span>
+                  <span>DiveGo Hurghada Fleet & Center</span>
                 </div>
                 <p className="text-slate-400 leading-relaxed text-[11px]">
                   Located at Saqala Square, Hurghada First, with daily departures and complimentary hotel transfers across

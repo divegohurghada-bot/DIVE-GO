@@ -1,18 +1,15 @@
 import React, { useState } from 'react';
 import {
-  Compass,
   Clock,
   Users,
-  CheckCircle2,
-  Calendar,
   MessageSquare,
   Sparkles,
   ArrowRight,
-  ShieldCheck,
   Zap,
 } from 'lucide-react';
 import { AppState } from '../../services/store';
 import { ServiceItem } from '../../types';
+import { useLanguage } from '../../context/LanguageContext';
 
 interface WebsiteExcursionsProps {
   state: AppState;
@@ -25,6 +22,7 @@ export const WebsiteExcursions: React.FC<WebsiteExcursionsProps> = ({
   onOpenBooking,
   onOpenAiChat,
 }) => {
+  const { t } = useLanguage();
   const [activeFilter, setActiveFilter] = useState<string>('all');
 
   const getImageForService = (service: ServiceItem) => {
@@ -65,24 +63,23 @@ export const WebsiteExcursions: React.FC<WebsiteExcursionsProps> = ({
         <div className="text-center max-w-3xl mx-auto mb-14">
           <div className="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-cyan-950/80 border border-cyan-800/80 text-cyan-300 text-xs font-semibold mb-3">
             <Sparkles className="h-3.5 w-3.5 text-cyan-400" />
-            <span>Top Rated Red Sea Adventures</span>
+            <span>{t.excursions.kicker}</span>
           </div>
 
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight mb-4 text-balance">
-            Verified Excursions & Diving Packages
+            {t.excursions.title}
           </h2>
           <p className="text-sm text-slate-400 leading-relaxed text-balance">
-            Direct online booking with no middleman markup. All trips include pickup from your Hurghada hotel lobby,
-            professional equipment, and full safety insurance.
+            {t.excursions.desc}
           </p>
 
           {/* Interactive Filter Control */}
-          <div className="inline-flex p-1.5 bg-slate-900/90 backdrop-blur-md border border-slate-800 rounded-2xl mt-8 gap-1.5 text-xs shadow-xl">
+          <div className="inline-flex flex-wrap justify-center p-1.5 bg-slate-900/90 backdrop-blur-md border border-slate-800 rounded-2xl mt-8 gap-1.5 text-xs shadow-xl">
             {[
-              { id: 'all', label: 'All Trips 🌊' },
-              { id: 'diving', label: 'Scuba Diving & Courses 🤿' },
-              { id: 'sea_trip', label: 'Dolphin & Snorkeling 🐬' },
-              { id: 'desert_safari', label: 'Desert Quad Safari 🏜️' },
+              { id: 'all', label: t.excursions.allFilter },
+              { id: 'diving', label: t.excursions.divingFilter },
+              { id: 'sea_trip', label: t.excursions.seaTripFilter },
+              { id: 'desert_safari', label: t.excursions.safariFilter },
             ].map((f) => {
               const isActive = activeFilter === f.id;
               return (
@@ -134,7 +131,7 @@ export const WebsiteExcursions: React.FC<WebsiteExcursionsProps> = ({
                     <span className="text-xl font-black text-white group-hover:text-cyan-300 transition-colors">
                       €{service.priceAdult}
                     </span>
-                    <span className="text-[10px] text-slate-400 block -mt-0.5">per adult</span>
+                    <span className="text-[10px] text-slate-400 block -mt-0.5">{t.excursions.perAdult}</span>
                   </div>
                 </div>
 
@@ -149,22 +146,22 @@ export const WebsiteExcursions: React.FC<WebsiteExcursionsProps> = ({
                     </p>
                   </div>
 
-                  {/* Meta Specs with Pill-free contrast design */}
+                  {/* Meta Specs */}
                   <div className="grid grid-cols-2 gap-2 text-[11px] bg-slate-950/70 p-3 rounded-2xl border border-slate-800 text-slate-300">
                     <div className="flex items-center space-x-2">
                       <Clock className="h-3.5 w-3.5 text-cyan-400" />
-                      <span className="font-medium">{service.durationHours} Hours Duration</span>
+                      <span className="font-medium">{service.durationHours} {t.excursions.durationHours}</span>
                     </div>
                     <div className="flex items-center space-x-2">
                       <Users className="h-3.5 w-3.5 text-blue-400" />
-                      <span className="font-medium">Child: €{service.priceChild || 'Free'}</span>
+                      <span className="font-medium">{t.excursions.childPrice}: €{service.priceChild || 'Free'}</span>
                     </div>
                   </div>
 
                   {/* Inclusions Highlights */}
                   <div className="space-y-1.5">
                     <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block">
-                      Inclusions:
+                      {t.excursions.inclusionsTitle}
                     </span>
                     <div className="flex flex-wrap gap-1 text-[11px] text-slate-300">
                       {service.inclusions.slice(0, 3).map((inc, i) => (
@@ -182,7 +179,7 @@ export const WebsiteExcursions: React.FC<WebsiteExcursionsProps> = ({
                       onClick={() => onOpenBooking(service.id)}
                       className="flex-1 py-3 px-4 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white rounded-xl text-xs font-bold shadow-md shadow-cyan-600/30 hover:shadow-cyan-500/50 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center space-x-2 cursor-pointer group/btn"
                     >
-                      <span>Book Online</span>
+                      <span>{t.excursions.bookBtn}</span>
                       <ArrowRight className="h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
                     </button>
 
@@ -193,7 +190,7 @@ export const WebsiteExcursions: React.FC<WebsiteExcursionsProps> = ({
                         )
                       }
                       className="p-3 bg-slate-800 hover:bg-slate-700 text-cyan-400 hover:text-cyan-300 border border-slate-700 hover:border-cyan-500/40 rounded-xl transition-all duration-200 cursor-pointer hover:scale-105"
-                      title="Ask AI Concierge About This Excursion"
+                      title={t.excursions.askAiBtn}
                     >
                       <MessageSquare className="h-4 w-4" />
                     </button>

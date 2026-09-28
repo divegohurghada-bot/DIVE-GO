@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import { ChevronDown, HelpCircle, Sparkles } from 'lucide-react';
+import { ChevronDown, HelpCircle } from 'lucide-react';
+import { useLanguage } from '../../context/LanguageContext';
 
 export const WebsiteFaq: React.FC = () => {
+  const { t } = useLanguage();
   const [openIdx, setOpenIdx] = useState<number | null>(0);
 
   const faqs = [
@@ -40,11 +42,11 @@ export const WebsiteFaq: React.FC = () => {
         <div className="text-center mb-14">
           <div className="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-cyan-950/80 border border-cyan-800/80 text-cyan-300 text-xs font-semibold mb-3">
             <HelpCircle className="h-3.5 w-3.5 text-cyan-400" />
-            <span>Clear Operational Transparency</span>
+            <span>DiveGo Hurghada</span>
           </div>
 
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight mb-4 text-balance">
-            Frequently Asked Questions
+            {t.nav.faq}
           </h2>
           <p className="text-sm text-slate-400 text-balance leading-relaxed">
             Everything you need to know about direct online booking, hotel pickups, equipment, and medical guidelines.
